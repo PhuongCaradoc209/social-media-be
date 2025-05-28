@@ -4,7 +4,7 @@ import { createClient } from "redis";
 
 export async function registerSocketEvents(io) {
     const subscriber = createClient({
-        url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
+        url: process.env.REDIS_URL,
     });
     subscriber.on("error", (err) => {
         console.error("Redis subscriber error:", err);

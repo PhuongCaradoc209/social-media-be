@@ -18,7 +18,7 @@ const PORT = process.env.PORT;
 
 // Setup CORS
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "https://social-media-fe-aqiy.vercel.app/",
   optionsSuccessStatus: 200,
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization", "Cookie"],

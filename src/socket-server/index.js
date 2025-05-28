@@ -13,7 +13,7 @@ const app = express();
 const server = http.createServer(app);
 
 const corsOptions = {
-    origin: "https://social-media-fe-aqiy.vercel.app",
+    origin: process.env.CORS_ORIGIN,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     optionsSuccessStatus: 200,
     credentials: true,
@@ -27,7 +27,7 @@ app.use(cookieParser());
 
 const io = new Server(server, {
     cors: {
-        origin: "https://social-media-fe-aqiy.vercel.app",
+        origin: process.env.CORS_ORIGIN,
         credentials: true,
     },
 });

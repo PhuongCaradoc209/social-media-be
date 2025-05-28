@@ -18,7 +18,7 @@ const PORT = process.env.PORT;
 
 // Setup CORS
 const corsOptions = {
-  origin: "https://social-media-fe-aqiy.vercel.app",
+  origin: process.env.CORS_ORIGIN,
   optionsSuccessStatus: 200,
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 });
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(cookieParser());  
 
 app.use("/users", userRoute);
 app.use("/posts", postRoute);

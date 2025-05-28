@@ -116,15 +116,16 @@ export const loginUser = async (req, res) => {
     };
 
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "1d", // Token expires in 1 day
     });
 
     // Set the token as a cookie
     res.cookie("token", token, {
       httpOnly: true, // Prevent access from JavaScript
       secure: process.env.NODE_ENV === "production", // Use secure cookies in production
-      sameSite: "strict", // Prevent CSRF
-      maxAge: 3600000, // 1 hour in milliseconds
+      sameSite: "none",
+      secure: true, // Prevent CSRF
+      maxAge: 86400000, // 1 hour in milliseconds
     });
 
     const safeUser = {
@@ -346,8 +347,8 @@ export const updateUserCover = async (req, res) => {
 export const logoutUser = (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
+    secure: true,
+    sameSite: "none",
   });
   res.status(200).json({ message: "Logged out successfully" });
 };

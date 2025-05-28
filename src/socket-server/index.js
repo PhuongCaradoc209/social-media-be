@@ -5,7 +5,6 @@ import dotenv from "dotenv";
 import redisClient from "./redis/client.js";
 import { registerSocketEvents } from "./sockets/handler.js";
 import cors from "cors"; 
-import { authenticate } from "../server-api/middleware/authenticateUser.js";
 import cookieParser from "cookie-parser";
 
 dotenv.config();
@@ -14,7 +13,7 @@ const app = express();
 const server = http.createServer(app);
 
 const corsOptions = {
-    origin: "https://social-media-fe-aqiy.vercel.app/",
+    origin: "https://social-media-fe-aqiy.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     optionsSuccessStatus: 200,
     credentials: true,
@@ -28,7 +27,7 @@ app.use(cookieParser());
 
 const io = new Server(server, {
     cors: {
-        origin: "https://social-media-fe-aqiy.vercel.app/",
+        origin: "https://social-media-fe-aqiy.vercel.app",
         credentials: true,
     },
 });
